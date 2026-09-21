@@ -1,0 +1,26 @@
+digraph ActivityProduct {
+  graph [rankdir=TB, bgcolor="white", pad=0.4, nodesep=0.4, ranksep=0.5, fontname="Arial", label="Diagrama de Atividades - Cadastro de Produto", labelloc=t, fontsize=18];
+  node [shape=box, style="rounded", fontname="Arial"];
+  edge [fontname="Arial"];
+  start [shape=circle, label="", width=.25, style=filled, fillcolor="#101828"];
+  form [label="ADMIN preenche nome, preço e estoque"];
+  image [label="Selecionar imagem (opcional)"];
+  send [label="App envia multipart/form-data"];
+  auth [label="API valida JWT e role ADMIN"];
+  role [shape=diamond, label="Autorizado?"];
+  upload [label="Multer valida extensão, MIME e limite de 5 MB"];
+  fileok [shape=diamond, label="Imagem válida?"];
+  rules [label="Validar regras: nome, preço > 0, estoque >= 0"];
+  save [label="Salvar produto no MySQL via Prisma"];
+  success [label="Retornar 201 e atualizar lista"];
+  fail [label="Retornar erro e não persistir arquivo inválido", color="#B42318"];
+  end [shape=doublecircle, label="", width=.25, style=filled, fillcolor="#101828"];
+  start -> form -> image -> send -> auth -> role;
+  role -> fail [label="Não"];
+  role -> upload [label="Sim"];
+  upload -> fileok;
+  fileok -> fail [label="Não"];
+  fileok -> rules [label="Sim / sem imagem"];
+  rules -> save -> success -> end;
+  fail -> end;
+}

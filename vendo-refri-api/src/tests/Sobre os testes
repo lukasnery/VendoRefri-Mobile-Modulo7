@@ -1,0 +1,34 @@
+Para falar a verdade eu lembrei dessa pasta no final.
+
+# Testes Manuais Realizados
+
+Os testes da API foram realizados utilizando o Thunder Client no VS Code.
+
+## Endpoints testados
+
+### Autenticação
+- POST /login
+- Validação de credenciais corretas e incorretas
+
+### Usuários
+- GET /users
+- POST /users
+- PUT /users/:id
+- DELETE /users/:id
+
+### Produtos
+- GET /products
+- POST /products
+- PUT /products/:id
+- DELETE /products/:id
+
+### Pedidos
+- GET /orders
+- POST /orders
+- PUT /orders/:id
+- DELETE /orders/:id
+
+## Resultados
+Todos os endpoints responderam corretamente conforme esperado, incluindo validações de autenticação e regras de negócio.
+
+Obs o certo era eu usar jest mas como já fiz manual espero que conte, de qualquer modo é isso.

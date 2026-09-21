@@ -1,0 +1,30 @@
+digraph UCAdmin {
+  graph [rankdir=LR, bgcolor="white", pad=0.4, nodesep=0.55, ranksep=0.9, fontname="Arial", label="Diagrama de Casos de Uso - Administrador", labelloc=t, fontsize=18];
+  node [fontname="Arial"];
+  edge [fontname="Arial", fontsize=10];
+  admin [shape=plaintext, label="👤\nAdministrador", fontsize=13];
+  subgraph cluster_system {
+    label="VendoRefri Mobile";
+    style="rounded";
+    color="#98A2B3";
+    login [shape=ellipse, label="Realizar Login"];
+    produtos [shape=ellipse, label="Gerenciar Produtos"];
+    cadastrar [shape=ellipse, label="Cadastrar Produto"];
+    editar [shape=ellipse, label="Editar Produto"];
+    excluir [shape=ellipse, label="Excluir Produto"];
+    upload [shape=ellipse, label="Enviar Imagem"];
+    validar [shape=ellipse, label="Validar Imagem"];
+    pedidos [shape=ellipse, label="Visualizar Todos os Pedidos"];
+    usuarios [shape=ellipse, label="Visualizar Usuários"];
+  }
+  admin -> login;
+  admin -> produtos;
+  admin -> pedidos;
+  admin -> usuarios;
+  produtos -> cadastrar [style=dashed, label="<<include>>"];
+  produtos -> editar [style=dashed, label="<<include>>"];
+  produtos -> excluir [style=dashed, label="<<include>>"];
+  cadastrar -> upload [style=dashed, label="<<include>>"];
+  editar -> upload [style=dashed, label="<<extend>>"];
+  upload -> validar [style=dashed, label="<<include>>"];
+}

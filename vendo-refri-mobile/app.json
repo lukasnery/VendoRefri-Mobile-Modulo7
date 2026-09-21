@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "VendoRefri Mobile",
+    "slug": "vendo-refri-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "permissions": [
+        "READ_MEDIA_IMAGES"
+      ],
+      "package": "com.lukasnery.vendorefrimobile"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "O VendoRefri usa a galeria para selecionar a imagem do produto."
+      }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O VendoRefri usa a galeria para selecionar a imagem do produto."
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true
+        }
+      ]
+    ]
+  }
+}

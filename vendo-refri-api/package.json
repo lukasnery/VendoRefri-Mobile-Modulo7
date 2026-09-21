@@ -1,0 +1,49 @@
+{
+  "name": "vendo-refri-api-mobile",
+  "version": "2.0.0",
+  "description": "API do VendoRefri Mobile - evolução acadêmica do projeto VendoRefri",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "seed": "ts-node src/scripts/seed.ts",
+    "test:e2e": "jest --config jest.e2e.config.js --runInBand"
+  },
+  "keywords": [
+    "react-native",
+    "express",
+    "prisma",
+    "mysql",
+    "multer"
+  ],
+  "author": "Lucas Nery Theodoro",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "5.22.0",
+    "bcrypt": "6.0.0",
+    "cors": "2.8.6",
+    "dotenv": "17.3.1",
+    "express": "5.2.1",
+    "jsonwebtoken": "9.0.3",
+    "multer": "2.4.0",
+    "prisma": "5.22.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "6.0.0",
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.6",
+    "@types/jest": "29.5.14",
+    "@types/jsonwebtoken": "9.0.10",
+    "@types/multer": "2.2.0",
+    "@types/node": "25.5.0",
+    "jest": "29.7.0",
+    "supertest": "7.2.2",
+    "ts-jest": "29.4.12",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.9.3"
+  }
+}

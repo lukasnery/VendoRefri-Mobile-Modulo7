@@ -1,0 +1,18 @@
+digraph SeqProduct {
+  graph [rankdir=TB, bgcolor="white", pad=0.4, nodesep=0.35, ranksep=0.5, fontname="Arial", label="Diagrama de Sequência - Cadastro de Produto com Imagem", labelloc=t, fontsize=18];
+  node [shape=box, fontname="Arial", style="rounded"];
+  edge [fontname="Arial", fontsize=10];
+  {rank=same; ad0 [label="Administrador", fillcolor="#EEF4FF", style="rounded,filled"]; app0 [label="App React Native", fillcolor="#F9F5FF", style="rounded,filled"]; api0 [label="API + Multer", fillcolor="#FEF0C7", style="rounded,filled"]; fs0 [label="Uploads", fillcolor="#F2F4F7", style="rounded,filled"]; db0 [label="MySQL/Prisma", fillcolor="#ECFDF3", style="rounded,filled"]}
+  ad1 [label="1. Preencher produto e escolher imagem"];
+  app1 [label="2. POST /products multipart + JWT"];
+  api1 [label="3. validar role ADMIN"];
+  api2 [label="4. validar arquivo e gerar nome único"];
+  fs1 [label="5. salvar arquivo"];
+  api3 [label="6. validar nome, preço e estoque"];
+  db1 [label="7. INSERT Product"];
+  api4 [label="8. produto criado"];
+  app2 [label="9. atualizar lista"];
+  ad2 [label="10. visualizar confirmação"];
+  ad0 -> app0 [style=invis]; app0 -> api0 [style=invis]; api0 -> fs0 [style=invis]; fs0 -> db0 [style=invis];
+  ad1 -> app1 -> api1 -> api2 -> fs1 -> api3 -> db1 -> api4 -> app2 -> ad2;
+}

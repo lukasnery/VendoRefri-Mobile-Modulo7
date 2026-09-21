@@ -1,0 +1,58 @@
+services:
+  api:
+    build:
+      context: ./vendo-refri-api
+      target: production
+    container_name: vendorefri_mobile_api
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}
+      PORT: ${API_PORT:-3000}
+    ports:
+      - "${API_PORT:-3000}:3000"
+    volumes:
+      - product_uploads:/app/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app_network
+      - db_network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 25s
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.4
+    container_name: vendorefri_mobile_mysql
+    env_file:
+      - .env
+    volumes:
+      - mysql_data:/var/lib/mysql
+    expose:
+      - "3306"
+    networks:
+      - db_network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  product_uploads:
+
+networks:
+  app_network:
+    driver: bridge
+  db_network:
+    driver: bridge
+    internal: true

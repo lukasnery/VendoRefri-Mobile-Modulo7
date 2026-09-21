@@ -1,0 +1,10 @@
+digraph SeqLogin {
+  graph [rankdir=TB, bgcolor="white", pad=0.4, nodesep=0.35, ranksep=0.5, fontname="Arial", label="Diagrama de Sequência - Login", labelloc=t, fontsize=18];
+  node [shape=box, fontname="Arial", style="rounded"];
+  edge [fontname="Arial", fontsize=10];
+  {rank=same; u0 [label="Usuário", fillcolor="#EEF4FF", style="rounded,filled"]; a0 [label="App React Native", fillcolor="#F9F5FF", style="rounded,filled"]; api0 [label="API Express", fillcolor="#FEF0C7", style="rounded,filled"]; db0 [label="MySQL/Prisma", fillcolor="#ECFDF3", style="rounded,filled"]}
+  u1 [label="1. Informar e-mail/senha"]; a1 [label="2. POST /auth/login"]; api1 [label="3. findUnique(email)"]; db1 [label="4. Retornar usuário"];
+  api2 [label="5. bcrypt.compare"]; api3 [label="6. gerar JWT(id, role)"]; a2 [label="7. token + usuário"]; a3 [label="8. persistir sessão no SecureStore"]; u2 [label="9. Exibir área autenticada"];
+  u0 -> a0 [style=invis]; a0 -> api0 [style=invis]; api0 -> db0 [style=invis];
+  u1 -> a1 -> api1 -> db1 -> api2 -> api3 -> a2 -> a3 -> u2;
+}

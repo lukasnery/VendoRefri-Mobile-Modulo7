@@ -1,0 +1,8 @@
+.env
+node_modules/
+dist/
+.expo/
+*.log
+.DS_Store
+vendo-refri-api/uploads/products/*
+!vendo-refri-api/uploads/products/.gitkeep

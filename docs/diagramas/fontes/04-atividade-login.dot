@@ -1,0 +1,20 @@
+digraph ActivityLogin {
+  graph [rankdir=TB, bgcolor="white", pad=0.4, nodesep=0.45, ranksep=0.55, fontname="Arial", label="Diagrama de Atividades - Login", labelloc=t, fontsize=18];
+  node [shape=box, style="rounded", fontname="Arial"];
+  edge [fontname="Arial"];
+  start [shape=circle, label="", width=.25, style=filled, fillcolor="#101828"];
+  input [label="Usuário informa e-mail e senha"];
+  request [label="App envia POST /auth/login"];
+  validate [label="API busca usuário e compara senha (bcrypt)"];
+  decision [shape=diamond, label="Credenciais\nválidas?"];
+  error [label="Exibir mensagem de erro", color="#B42318"];
+  token [label="Gerar JWT com id e role"];
+  session [label="Salvar sessão no Expo SecureStore"];
+  home [label="Abrir área autenticada"];
+  end [shape=doublecircle, label="", width=.25, style=filled, fillcolor="#101828"];
+  start -> input -> request -> validate -> decision;
+  decision -> error [label="Não"];
+  error -> input;
+  decision -> token [label="Sim"];
+  token -> session -> home -> end;
+}

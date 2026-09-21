@@ -1,0 +1,45 @@
+digraph DER {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.8, ranksep=1.0, fontname="Arial"];
+  node [shape=plain, fontname="Arial"];
+  edge [fontname="Arial", fontsize=10];
+
+  User [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#FEE4E2"><B>USER</B></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id : UUID</TD></TR>
+      <TR><TD ALIGN="LEFT">nome : String</TD></TR>
+      <TR><TD ALIGN="LEFT">email : String (UNIQUE)</TD></TR>
+      <TR><TD ALIGN="LEFT">senha : String (hash)</TD></TR>
+      <TR><TD ALIGN="LEFT">cpf : String (UNIQUE)</TD></TR>
+      <TR><TD ALIGN="LEFT">role : ADMIN | USER</TD></TR>
+      <TR><TD ALIGN="LEFT">createdAt / updatedAt</TD></TR>
+    </TABLE>
+  >];
+
+  Order [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#FEF0C7"><B>ORDER</B></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id : UUID</TD></TR>
+      <TR><TD ALIGN="LEFT">FK userId : UUID</TD></TR>
+      <TR><TD ALIGN="LEFT">FK productId : UUID</TD></TR>
+      <TR><TD ALIGN="LEFT">quantidade : Int</TD></TR>
+      <TR><TD ALIGN="LEFT">createdAt</TD></TR>
+    </TABLE>
+  >];
+
+  Product [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D1FADF"><B>PRODUCT</B></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id : UUID</TD></TR>
+      <TR><TD ALIGN="LEFT">nome : String</TD></TR>
+      <TR><TD ALIGN="LEFT">preco : Float</TD></TR>
+      <TR><TD ALIGN="LEFT">estoque : Int</TD></TR>
+      <TR><TD ALIGN="LEFT">imagemUrl : String?</TD></TR>
+      <TR><TD ALIGN="LEFT">imagemNome : String?</TD></TR>
+      <TR><TD ALIGN="LEFT">createdAt / updatedAt</TD></TR>
+    </TABLE>
+  >];
+
+  User -> Order [label=" 1 : N", arrowhead="crow", dir=both, arrowtail="none"];
+  Product -> Order [label=" 1 : N", arrowhead="crow", dir=both, arrowtail="none"];
+}

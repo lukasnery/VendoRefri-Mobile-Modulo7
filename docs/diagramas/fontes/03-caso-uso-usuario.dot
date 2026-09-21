@@ -1,0 +1,27 @@
+digraph UCUser {
+  graph [rankdir=LR, bgcolor="white", pad=0.4, nodesep=0.55, ranksep=0.9, fontname="Arial", label="Diagrama de Casos de Uso - Usuário", labelloc=t, fontsize=18];
+  node [fontname="Arial"];
+  edge [fontname="Arial", fontsize=10];
+  user [shape=plaintext, label="👤\nUsuário", fontsize=13];
+  subgraph cluster_system {
+    label="VendoRefri Mobile";
+    style="rounded";
+    color="#98A2B3";
+    cadastro [shape=ellipse, label="Cadastrar Conta"];
+    login [shape=ellipse, label="Realizar Login"];
+    listar [shape=ellipse, label="Consultar Produtos"];
+    pedido [shape=ellipse, label="Realizar Pedido"];
+    estoque [shape=ellipse, label="Validar Estoque"];
+    meus [shape=ellipse, label="Visualizar Meus Pedidos"];
+    cancelar [shape=ellipse, label="Cancelar Pedido"];
+    restituir [shape=ellipse, label="Restituir Estoque"];
+  }
+  user -> cadastro;
+  user -> login;
+  user -> listar;
+  user -> pedido;
+  user -> meus;
+  user -> cancelar;
+  pedido -> estoque [style=dashed, label="<<include>>"];
+  cancelar -> restituir [style=dashed, label="<<include>>"];
+}
